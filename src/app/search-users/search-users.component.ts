@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SearchUsersService } from '../search-users.service';
 
 @Component({
   selector: 'app-search-users',
@@ -9,7 +10,7 @@ export class SearchUsersComponent implements OnInit {
   place: string;
   language: string;
 
-  constructor() {}
+  constructor(private searchService: SearchUsersService) {}
   ngOnInit() {}
 
   search(place: string, language: string) {
