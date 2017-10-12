@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-users',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-users.component.css']
 })
 export class SearchUsersComponent implements OnInit {
+  place: string;
+  language: string;
 
-  constructor() { }
+  constructor() {}
+  ngOnInit() {}
 
-  ngOnInit() {
+  search(place: string, language: string) {
+    this.place = place;
+    this.language = language;
+    console.log(this.place, this.language);
   }
-
 }
