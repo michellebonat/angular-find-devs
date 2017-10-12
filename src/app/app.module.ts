@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
+import { SearchUsersService } from './search-users.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +13,11 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     SearchUsersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [ SearchUsersService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
