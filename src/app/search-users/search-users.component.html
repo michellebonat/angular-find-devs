@@ -1,9 +1,9 @@
 <p>
-  search-users works!
+  Find a developer
 </p>
 
 <div>
- <input placeholder="Location Name">
- <input placeholder="Language e.g. Java">
- <button>Search</button>
+ <input placeholder="Location Name" #place>
+ <input placeholder="Language e.g. Ruby" #language>
+ <button (click)="search(place.value, language.value)">Search</button>
 </div>
