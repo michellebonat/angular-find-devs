@@ -1,9 +1,57 @@
-<p>
-  Find a developer
-</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h2>Find developers in your city and programming language</h2>
+      <a href="http://michellebonat.com" target="_blank">Made using Angular 4 ( By Michelle Bonat )</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-md-offset-3">
+      <div class="form-inline">
+        <input placeholder="Location Name" class="form-control input-lg input" #place (keyup.enter)="search(place.value, language.value); place.value=''; language.value='';" />
+        <input placeholder="Language i.e. Ruby" class="form-control input-lg input" #language (keyup.enter)="search(place.value, language.value); place.value=''; language.value='';" />
+        <button class="btn btn-primary btn-lg" (click)="search(place.value, language.value); place.value=''; language.value='';">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="text-center" style="padding: 1em; color:red;" *ngIf="error_text">{{ error_text }}</p>
+    <div [ngClass]="{'col-md-9': selected, 'col-md-12': !selected}">
+      <div class="user col-md-2 text-center" *ngFor="let user of results" (click)="getDetails(user.login)">
+        <div class="img_container">
+          <img src="{{user.avatar_url}}" class="img-circle" width="100" height="100">
+        </div>
+        <div class="details_container">
+          <a href="{{user.html_url}}" target="_blank" class="login_name">{{ user.login }}</a>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="results.length && selected" class="col-md-3">
 
-<div>
- <input placeholder="Location Name" #place>
- <input placeholder="Language e.g. Ruby" #language>
- <button (click)="search(place.value, language.value)">Search</button>
+      <div class="box text-center">
+        <img src="{{selectedUser.avatar_url}}" class="img-responsive img-circle">
+        <div class="details">
+          <div *ngIf="selectedUser.name"><a href="{{ selectedUser.html_url }}" target="_blank"><h3>{{ selectedUser.name }} </h3></a></div>
+          <hr>
+          <div *ngIf="selectedUser.email">Email: {{ selectedUser.email }}</div>
+          <hr>
+          <div *ngIf="selectedUser.location">Location: {{ selectedUser.location }}</div>
+          <hr>
+          <div *ngIf="selectedUser.bio">Bio: {{ selectedUser.bio }}</div>
+          <hr>
+          <div *ngIf="selectedUser.updated_at">Last Seen: {{ selectedUser.updated_at | date }}</div>
+          <hr>
+          <div *ngIf="selectedUser.public_repos">Repos: {{ selectedUser.public_repos }}</div>
+          <hr>
+          <div *ngIf="selectedUser.public_gists">Gists: {{ selectedUser.public_gists }}</div>
+          <hr>
+          <div *ngIf="selectedUser.followers">Followers: {{ selectedUser.followers }}</div>
+          <hr>
+          <div *ngIf="selectedUser.created_at">Joined github: {{ selectedUser.created_at | date }}</div>
+          <hr>
+          <button class="btn btn-sm btn-warning" (click)="selected = !selected">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
