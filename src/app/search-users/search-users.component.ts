@@ -14,8 +14,8 @@ export class SearchUsersComponent implements OnInit {
   selected: boolean = false; // Flag to check if a user is clicked or not
   selectedUser: any; // Selected user details
   error_text: string = ""; // Error reporing text to the end user
-
   constructor(private searchService: SearchUsersService) {}
+
   ngOnInit() {}
 
   search(place: string, language: string) {
@@ -35,5 +35,17 @@ export class SearchUsersComponent implements OnInit {
         }
       )
     }
+  }
+  getDetails(username: string) {
+    this.searchService.getDetailsByUserName(username).subscribe(
+      userDatils => {
+        this.selectedUser = userDatils;
+        this.selected = true;
+      },
+      error => {
+        this.selected = false;
+        console.error(error);
+      }
+    )
   }
 }
